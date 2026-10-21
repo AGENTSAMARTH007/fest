@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+
+  <title>EcoPulse | Environmental Intelligence</title>
+  <meta name="description" content="Explore city weather, air quality and environmental forecasts with EcoPulse.">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="EcoPulse home">
+        <span class="brand-icon">✳</span>
+        <span>eco<span class="brand-accent">pulse</span></span>
+      </a>
+
+      <p class="sidebar-label">WORKSPACE</p>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview">◈ &nbsp; Overview</a>
+        <a class="nav-link" href="#air-quality">◉ &nbsp; Air intelligence</a>
+        <a class="nav-link" href="#forecast">⌁ &nbsp; Forecast lab</a>
+        <a class="nav-link" href="#compare">⇄ &nbsp; City comparison</a>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="status-dot"></span>
+        <span>Environmental data explorer</span>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="footer-symbol">◎</span>
+        <div>
+          <strong>EcoPulse</strong>
+          <p>Understand your environment.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content" id="overview">
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">ENVIRONMENTAL INTELLIGENCE / 01</p>
+          <h1>Your city, decoded.</h1>
+          <p class="page-subtitle">
+            Weather patterns and air quality, in one place.
+          </p>
+        </div>
+
+        <div class="topbar-badge">
+          <span class="status-dot"></span>
+          API-powered data
+        </div>
+      </header>
+
+      <!-- Search -->
+      <section class="search-section" aria-labelledby="search-title">
+        <div class="search-heading">
+          <div>
+            <p class="eyebrow">LOCATION EXPLORER</p>
+            <h2 id="search-title">Discover a city</h2>
+          </div>
+          <span class="small-label">SEARCH ANYWHERE</span>
+        </div>
+
+        <form id="city-search-form" class="search-form">
+          <label class="visually-hidden" for="city-input">
+            Enter a city name
+          </label>
+
+          <span class="search-icon" aria-hidden="true">⌕</span>
+
+          <input
+            id="city-input"
+            name="city"
+            type="search"
+            placeholder="Try Pune, Tokyo, London..."
+            autocomplete="off"
+            minlength="2"
+            required
+          >
+
+          <button type="submit" id="search-button">
+            Explore city <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+
+        <p id="search-status" class="helper-text" aria-live="polite">
+          Search for a city to explore its environmental conditions.
+        </p>
+
+        <div id="city-results" class="city-results" hidden></div>
+      </section>
+
+      <!-- Loading and error messages -->
+      <section id="loading-state" class="message-panel" role="status" hidden>
+        <span class="loader" aria-hidden="true"></span>
+        <div>
+          <strong>Analysing your city...</strong>
+          <p>Fetching weather and air-quality data.</p>
+        </div>
+      </section>
+
+      <section id="error-state" class="message-panel error-panel"
+        role="alert" hidden>
+        <div>
+          <strong id="error-title">Unable to load city data</strong>
+          <p id="error-message">Please check your connection and try again.</p>
+        </div>
+        <button type="button" id="retry-button">Try again</button>
+      </section>
+
+      <!-- Dashboard content -->
+      <div id="dashboard-content">
+
+        <section class="location-heading">
+          <div>
+            <p class="eyebrow">CURRENT EXPLORATION</p>
+            <h2 id="current-city">Pune, India</h2>
+            <p id="location-meta" class="helper-text">
+              Search a city to load its latest available data.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            id="favorite-button"
+            class="secondary-button"
+            aria-pressed="false"
+          >
+            ☆ Save city
+          </button>
+        </section>
+
+        <!-- Main air quality card -->
+        <section id="air-quality" class="hero-grid">
+          <article class="aqi-card">
+            <div class="card-topline">
+              <span class="card-kicker">AIR QUALITY INDEX</span>
+              <span class="live-label">
+                <span class="status-dot"></span> Forecast data
+              </span>
+            </div>
+
+            <div class="aqi-content">
+              <div>
+                <p class="aqi-caption">US AQI</p>
+                <p id="aqi-value" class="aqi-number">--</p>
+                <p id="aqi-category" class="aqi-category">
+                  Awaiting data
+                </p>
+              </div>
+
+              <div class="aqi-visual" aria-hidden="true">
+                <div class="aqi-ring">
+                  <span>◉</span>
+                </div>
+              </div>
+            </div>
+
+            <p id="aqi-description" class="aqi-description">
+              Search a city to see its air-quality forecast.
+            </p>
+          </article>
+
+          <article class="insight-card">
+            <div class="card-topline">
+              <span class="card-kicker">ENVIRONMENTAL BRIEF</span>
+              <span aria-hidden="true">✳</span>
+            </div>
+
+            <h3 id="insight-title">Your next insight starts here.</h3>
+            <p id="insight-text">
+              Explore environmental indicators to understand local conditions.
+            </p>
+
+            <div class="insight-divider"></div>
+
+            <p class="helper-text">
+              Based on available forecast variables, not a health diagnosis.
+            </p>
+          </article>
+        </section>
+
+        <!-- Weather and pollutant metrics -->
+        <section class="metrics-section" aria-labelledby="metrics-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">THE NUMBERS</p>
+              <h2 id="metrics-title">Environmental snapshot</h2>
+            </div>
+            <span class="small-label">CURRENT CONDITIONS</span>
+          </div>
+
+          <div class="metrics-grid">
+            <article class="metric-card">
+              <div class="metric-icon temperature-icon">℃</div>
+              <p class="metric-label">Temperature</p>
+              <p class="metric-value" id="temperature-value">--</p>
+              <p class="metric-foot">Near-surface air</p>
+            </article>
+
+            <article class="metric-card">
+              <div class="metric-icon humidity-icon">◌</div>
+              <p class="metric-label">Humidity</p>
+              <p class="metric-value" id="humidity-value">--</p>
+              <p class="metric-foot">Relative humidity</p>
+            </article>
+
+            <article class="metric-card">
+              <div class="metric-icon wind-icon">≋</div>
+              <p class="metric-label">Wind speed</p>
+              <p class="metric-value" id="wind-value">--</p>
+              <p class="metric-foot">10 metres above ground</p>
+            </article>
+
+            <article class="metric-card">
+              <div class="metric-icon pm25-icon">◍</div>
+              <p class="metric-label">PM2.5</p>
+              <p class="metric-value" id="pm25-value">--</p>
+              <p class="metric-foot">Fine particles · µg/m³</p>
+            </article>
+
+            <article class="metric-card">
+              <div class="metric-icon pm10-icon">◉</div>
+              <p class="metric-label">PM10</p>
+              <p class="metric-value" id="pm10-value">--</p>
+              <p class="metric-foot">Particles · µg/m³</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Forecast chart -->
+        <section id="forecast" class="forecast-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">LOOK AHEAD</p>
+              <h2>Atmospheric trends</h2>
+              <p class="helper-text">
+                Explore how the selected indicator changes over time.
+              </p>
+            </div>
+
+            <div class="filter-control">
+              <label for="trend-filter">Indicator</label>
+              <select id="trend-filter">
+                <option value="us_aqi">US AQI</option>
+                <option value="pm2_5">PM2.5</option>
+                <option value="pm10">PM10</option>
+                <option value="temperature_2m">Temperature</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="chart-legend">
+            <span class="legend-dot"></span>
+            <span id="chart-label">US AQI · hourly forecast</span>
+          </div>
+
+          <div class="chart-container">
+            <canvas
+              id="trend-chart"
+              role="img"
+              aria-label="Hourly environmental forecast chart"
+            ></canvas>
+            <p id="chart-empty" class="helper-text" hidden>
+              Forecast data is not available for this indicator.
+            </p>
+          </div>
+
+          <p class="data-note" id="forecast-note">
+            Forecasts are model estimates and may change.
+          </p>
+        </section>
+
+        <!-- City comparison -->
+        <section id="compare" class="compare-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">MULTI-CITY INTELLIGENCE</p>
+              <h2>Compare your saved cities</h2>
+              <p class="helper-text">
+                Compare available AQI values across locations you save.
+              </p>
+            </div>
+
+            <div class="filter-control">
+              <label for="aqi-filter">Filter AQI</label>
+              <select id="aqi-filter">
+                <option value="all">All levels</option>
+                <option value="good">Good · 0–50</option>
+                <option value="moderate">Moderate · 51–100</option>
+                <option value="sensitive">Sensitive groups · 101–150</option>
+                <option value="poor">Poor · 151–200</option>
+                <option value="very-poor">Very poor · 201–300</option>
+                <option value="hazardous">Hazardous · 301–500</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="comparison-list" class="comparison-list">
+            <div class="empty-state">
+              <span aria-hidden="true">⇄</span>
+              <h3>Your city comparison starts here.</h3>
+              <p>Search for a city and save it to build your comparison list.</p>
+            </div>
+          </div>
+
+          <p id="comparison-status" class="helper-text" aria-live="polite"></p>
+        </section>
+
+      </div>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <p>
+          Environmental forecasts are estimates, not official monitoring
+          station readings or medical advice.
+        </p>
+        <p>
+          Data provided by
+          <a href="https://open-meteo.com/" target="_blank"
+             rel="noopener noreferrer">Open-Meteo</a>.
+          See its
+          <a href="https://open-meteo.com/en/terms"
+             target="_blank" rel="noopener noreferrer">terms of use</a>.
+        </p>
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>
