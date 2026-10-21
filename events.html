@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore TechFest events, including hackathons, robotics, quizzes, workshops, and gaming.">
+  <title>Events | TechFest</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Tech<span>Fest</span></a>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="navLinks"
+    >☰</button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="events.html" aria-current="page">Events</a>
+      <a href="register.html">Register</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <p class="eyebrow">EXPLORE • LEARN • COMPETE</p>
+      <h1>Our Events</h1>
+      <p>
+        Discover exciting competitions, workshops, and activities.
+        Find your challenge and be part of TechFest.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="event-filters" aria-label="Filter events">
+        <button class="filter-button active" data-filter="all"
+          aria-pressed="true">All</button>
+        <button class="filter-button" data-filter="coding"
+          aria-pressed="false">Coding</button>
+        <button class="filter-button" data-filter="workshop"
+          aria-pressed="false">Workshop</button>
+        <button class="filter-button" data-filter="quiz"
+          aria-pressed="false">Quiz</button>
+        <button class="filter-button" data-filter="gaming"
+          aria-pressed="false">Gaming</button>
+      </div>
+
+      <p id="eventCount" class="event-meta" aria-live="polite">
+        Showing 6 events
+      </p>
+
+      <div class="event-grid" id="eventGrid">
+        <article class="event-card" data-category="coding">
+          <div class="event-icon" aria-hidden="true">💻</div>
+          <h2>Hackathon</h2>
+          <p>Solve real-world problems and turn your ideas into working prototypes.</p>
+          <p class="event-meta">Date: 25 October 2026</p>
+          <a class="button primary" href="register.html">Register</a>
+        </article>
+
+        <article class="event-card" data-category="workshop">
+          <div class="event-icon" aria-hidden="true">🤖</div>
+          <h2>Robotics Workshop</h2>
+          <p>Discover robotics, automation, and intelligent machines.</p>
+          <p class="event-meta">Date: 26 October 2026</p>
+          <a class="button primary" href="register.html">Register</a>
+        </article>
+
+        <article class="event-card" data-category="quiz">
+          <div class="event-icon" aria-hidden="true">🏆</div>
+          <h2>Tech Quiz</h2>
+          <p>Test your knowledge of programming, computers, and technology.</p>
+          <p class="event-meta">Date: 26 October 2026</p>
+          <a class="button primary" href="register.html">Register</a>
+        </article>
+
+        <article class="event-card" data-category="workshop">
+          <div class="event-icon" aria-hidden="true">🎨</div>
+          <h2>UI/UX Design</h2>
+          <p>Learn the basics of wireframes, interfaces, and user experience.</p>
+          <p class="event-meta">Date: 27 October 2026</p>
+          <a class="button primary" href="register.html">Register</a>
+        </article>
+
+        <article class="event-card" data-category="gaming">
+          <div class="event-icon" aria-hidden="true">🎮</div>
+          <h2>Gaming Tournament</h2>
+          <p>Challenge fellow gamers in a friendly competition.</p>
+          <p class="event-meta">Date: 27 October 2026</p>
+          <a class="button primary" href="register.html">Register</a>
+        </article>
+
+        <article class="event-card" data-category="coding">
+          <div class="event-icon" aria-hidden="true">🌐</div>
+          <h2>Web Development</h2>
+          <p>Build creative web experiences using modern frontend fundamentals.</p>
+          <p class="event-meta">Date: 28 October 2026</p>
+          <a class="button primary" href="register.html">Register</a>
+        </article>
+      </div>
+
+      <p id="noEvents" class="no-events" hidden>
+        No events found in this category.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="logo" href="index.html">Tech<span>Fest</span></a>
+    <p>Innovate. Build. Connect.</p>
+    <p>&copy; 2026 TechFest. All rights reserved.</p>
+  </footer>
+</body>
+</html>

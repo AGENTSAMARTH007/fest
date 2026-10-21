@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Register for TechFest college technology festival events.">
+  <title>Register | TechFest</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Tech<span>Fest</span></a>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="navLinks"
+    >☰</button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="register.html" aria-current="page">Register</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <p class="eyebrow">YOUR NEXT CHALLENGE STARTS HERE</p>
+      <h1>Join TechFest 2026</h1>
+      <p>Fill in your details and select the event you want to attend.</p>
+    </section>
+
+    <section class="section registration-section">
+      <form id="registrationForm" class="registration-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullName">Full name</label>
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              autocomplete="name"
+              placeholder="Enter your full name"
+              required
+              minlength="2"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              inputmode="tel"
+              pattern="[0-9]{10}"
+              placeholder="10-digit mobile number"
+              aria-describedby="phoneHint"
+              required
+            >
+            <span class="form-hint" id="phoneHint">
+              Enter a 10-digit number without spaces.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="college">College name</label>
+            <input
+              id="college"
+              name="college"
+              type="text"
+              autocomplete="organization"
+              placeholder="Enter your college"
+              required
+            >
+          </div>
+
+          <div class="form-group full-width">
+            <label for="studyYear">Year of study</label>
+            <select id="studyYear" name="studyYear" required>
+              <option value="">Select your year</option>
+              <option value="FY">First Year</option>
+              <option value="SY">Second Year</option>
+              <option value="TY">Third Year</option>
+              <option value="Final Year">Final Year</option>
+            </select>
+          </div>
+
+          <fieldset class="form-group full-width">
+            <legend class="form-legend">Choose an event</legend>
+
+            <div class="event-options">
+              <label class="event-option">
+                <input type="checkbox" name="events" value="Hackathon">
+                Hackathon
+              </label>
+
+              <label class="event-option">
+                <input type="checkbox" name="events" value="Robotics Workshop">
+                Robotics Workshop
+              </label>
+
+              <label class="event-option">
+                <input type="checkbox" name="events" value="Tech Quiz">
+                Tech Quiz
+              </label>
+
+              <label class="event-option">
+                <input type="checkbox" name="events" value="UI/UX Design">
+                UI/UX Design
+              </label>
+
+              <label class="event-option">
+                <input type="checkbox" name="events" value="Gaming Tournament">
+                Gaming Tournament
+              </label>
+
+              <label class="event-option">
+                <input type="checkbox" name="events" value="Web Development">
+                Web Development
+              </label>
+            </div>
+
+            <span class="form-hint">Select at least one event.</span>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="button primary form-submit">
+          Submit Registration
+        </button>
+
+        <p id="formMessage" class="form-message" role="status" hidden></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="logo" href="index.html">Tech<span>Fest</span></a>
+    <p>Innovate. Build. Connect.</p>
+    <p>&copy; 2026 TechFest. All rights reserved.</p>
+  </footer>
+</body>
+</html>
